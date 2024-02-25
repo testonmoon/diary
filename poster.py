@@ -43,6 +43,7 @@ class Git:
         modes = {'M': Git.MODIFIED, 'D': Git.DELETED, '??': Git.UNTRACKED}
 
         output = run_command('git status -s')
+        print(output)
         for status in output:
             mode, file = status.strip().split(' ')
             if mode not in modes:
