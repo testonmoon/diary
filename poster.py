@@ -43,8 +43,10 @@ class Git:
         modes = {'M': Git.MODIFIED, 'D': Git.DELETED, '??': Git.UNTRACKED}
 
         output = run_command('git status -s')
-        print(output)
         for status in output:
+            if len(status) == 0:
+                continue
+            
             mode, file = status.strip().split(' ')
             if mode not in modes:
                 raise Exception(UNKNOWN_MODE.format(mode))
